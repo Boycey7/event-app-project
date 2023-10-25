@@ -9,6 +9,7 @@ const createError = require('http-errors');
 require("dotenv").config();
 const eventRoutes = require("./routes/events");
 const { User } = require("./models/tempUsers")
+const { v4: uuid } = require("uuid");
 
 mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
@@ -29,12 +30,41 @@ app.use(helmet());
 
 app.post("/auth", async (req, res, next) => {
     console.log("logging in")
-    const loginName = req.body.username
+    const loginEmail = req.body.email
+    const password = req.body.password
     try {
-        const user = await User
+        // check for user
+        const user = await User.findOne({email: loginEmail})
+        if (!user) {
+            return next(createError(404, "No user found!"))
+        }
+
+        // check password
+        if (password !== user.password) {
+            return next(createError(401, "Incorrect password"))
+        }
+
+        // give user a token
+        user.token = uuidv4();
+        await user.save()
+        res.send({
+            token: user.token
+        })
 
     } catch (error) {
         return next(createError(500, "Server error"))
+    }
+})
+
+// check header for auth token
+
+app.use(async (req, res, next) => {
+    const authHeader = req.headers.authorization;
+    const user = await User.findOne({ token: authHeader })
+    if (user) {
+        next();
+    } else {
+        return next(createError(401, "Unauthorised"))
     }
 })
 
