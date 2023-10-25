@@ -1,5 +1,6 @@
 import axios from "axios";
-const url = "http://localhost:3001/";
+const url = process.env.API_ENDPOINT || "http://localhost:3001/";
+
 
 export class ApiClient {
   constructor(tokenProvider, logoutHandler) {
