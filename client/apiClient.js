@@ -28,17 +28,17 @@ export class ApiClient {
   getEvents() {
     return this.authenticatedCall("get", "");
   }
-
-  addEvent(name, location, precis, dateTime) {
-    return this.authenticatedCall("post", "", { name, location, precis, dateTime });
+// temporary parameters
+  addEvent(name, location, description, dateTime) {
+    return this.authenticatedCall("post", "", { name, location, description, dateTime });
   }
 
   removeEvent(id) {
     return this.authenticatedCall("delete", `${id}`);
   }
 
-  updateEvent(id, name, location, precis, dateTime) {
-    return this.authenticatedCall("put", `${id}`, { name, location, precis, dateTime });
+  updateEvent(id, name, location, description, dateTime) {
+    return this.authenticatedCall("put", `${id}`, { name, location, description, dateTime });
   }
 
   async login(username, password) {
