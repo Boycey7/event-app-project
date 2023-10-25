@@ -25,6 +25,9 @@ app.use(morgan("dev"));
 app.use(express.json({ extended: false }));
 app.use(helmet());
 
+
+app.use("/", eventRoutes);
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 })
