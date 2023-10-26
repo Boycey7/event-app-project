@@ -81,8 +81,8 @@ exports.deleteEventById = async (req, res, next) => {
 // get all users 
 exports.getAllUsers = async (req, res, next) => {
     try {
-        const allUsers = await User.find();
-        res.send(allUsers)
+        // const allUsers = await User.find();
+        res.send("hello")
     } catch (error) {
         console.log(error);
         res.send("a server error has occurred");
