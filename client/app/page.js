@@ -7,11 +7,12 @@ import { useState } from 'react'
 
 export default function Home() {
   const [token, setToken] = useState(window.localStorage.getItem('token'));
+  const client = new ApiClient(() => token, () => logout());
   const logout = () => {
     window.localStorage.removeItem('token');
     setToken(undefined);
   }
-  const client = new ApiClient(() => token, () => logout());
+  
 
 
 
