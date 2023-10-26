@@ -2,7 +2,7 @@ const createError = require("http-errors");
 const mongoose = require("mongoose");
 const { Event } = require("../models/events");
 const helmet = require("helmet");
-const { User } = require("../models/users");
+const { User } = require("../models/tempUsers");
 const { v4: uuidv4 } =require("uuid");
 
 
@@ -78,17 +78,29 @@ exports.deleteEventById = async (req, res, next) => {
     }
 };
 
-// get events by user - NOT WORKING!
-exports.getEventsByUser = async (req, res, next) => {
-    const id = req.params.id;
-
+// get all users 
+exports.getAllUsers = async (req, res, next) => {
     try {
-        // this isn't working! Might need to try the populate method!
-        const eventsByUser = Event.find({ creator: id });
-        res.send(eventsByUser);
+        const allUsers = await User.find();
+        res.send(allUsers)
     } catch (error) {
         console.log(error);
         res.send("a server error has occurred");
         return next(createError(500, "a server error has occured"));
     }
-};
+}
+
+// get events by user - NOT WORKING!
+// exports.getEventsByUser = async (req, res, next) => {
+//     const id = req.params.id;
+
+//     try {
+//         // this isn't working! Might need to try the populate method!
+//         const eventsByUser = Event.find({ creator: id });
+//         res.send(eventsByUser);
+//     } catch (error) {
+//         console.log(error);
+//         res.send("a server error has occurred");
+//         return next(createError(500, "a server error has occured"));
+//     }
+// };

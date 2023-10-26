@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { addEvent, getEvents, getEventsByUser, deleteEventById, updateEventById } = require("../controllers/events")
+const { addEvent, getEvents, getEventsByUser, deleteEventById, updateEventById, getAllUsers } = require("../controllers/events")
 
 
 router.get("/", getEvents) // get all events
@@ -9,5 +9,6 @@ router.get("/user/:id", getEventsByUser) // get events by user - currently by id
 router.delete("/delete/:id", deleteEventById) // delete an event
 router.put("/update/:id", updateEventById) // updat an event
 
+// router.get("/users", getAllUsers) // get a list of all users
 
 module.exports = router
