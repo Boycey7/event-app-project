@@ -22,7 +22,7 @@ mongoose
 
 app.use(
   cors({
-    origin: ["https://event-app-project.vercel.app/", "http://localhost:3000"],
+    origin: ["https://event-app-project.vercel.app", "http://localhost:3000"],
   })
 );
 
