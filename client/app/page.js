@@ -1,25 +1,32 @@
-"use client"
-import { ApiClient } from '@/apiClient'
-import Register from '@/components/Register'
-import login from '@/components/Login'
-import Dashboard from '@/components/Dashboard'
-import { useState } from 'react'
+"use client";
+import { ApiClient } from "@/apiClient";
+import Register from "@/components/Register";
+import login from "@/components/Login";
+import Dashboard from "@/components/Dashboard";
+import { useState, useEffect } from "react";
 
 export default function Home() {
-  const [token, setToken] = useState(window.localStorage.getItem('token'));
-  const client = new ApiClient(() => token, () => logout());
+  const [token, setToken] = useState(null);
   const logout = () => {
-    window.localStorage.removeItem('token');
-    setToken(undefined);
-  }
-  
+    window.localStorage.removeItem("token");
+    setToken(null);
+  };
 
+  useEffect(() => {
+    const token = window.localStorage.getItem("token");
+    if (token) {
+      setToken(token);
+    }
+  }, []);
 
-
+  const client = new ApiClient(
+    () => token,
+    () => logout()
+  );
 
   return (
-    <main className="">
-     {token? <Dashboard client={client} /> : <Register client={client} />}
+    <main>
+      {token ? <Dashboard client={client} /> : <Register client={client} />}
     </main>
-  )
+  );
 }
