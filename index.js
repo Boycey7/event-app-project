@@ -22,7 +22,7 @@ mongoose
 
 app.use(
   cors({
-    origin: ["https://event-app-project.vercel.app", "http://localhost:3000"],
+    origin: ["https://event-app-project.vercel.app", "http://localhost:3000", "https://event-app-project-git-v1-jake-bs-projects.vercel.app/"],
   })
 );
 
@@ -47,7 +47,7 @@ app.post("/auth", async (req, res, next) => {
     }
 
     // give user a token
-    user.token = uuidv4();
+    user.token = uuid();
     await user.save();
     res.send({
       token: user.token,
