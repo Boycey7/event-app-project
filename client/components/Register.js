@@ -15,8 +15,9 @@ const Register = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setDisabled(true);
     // TODO: Implement registration logic here
     console.log("User data submitted:", formData);
   };
@@ -80,6 +81,8 @@ const Register = () => {
             <button
               type="submit"
               className="w-full p-2 mt-5 text-white rounded-md bg-slate-700 hover:bg-slate-dark"
+              disabled={disabled}
+              onClick={handleSubmit}
             >
               Sign Up
             </button>
