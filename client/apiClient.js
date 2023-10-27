@@ -22,17 +22,31 @@ export class ApiClient {
         this.logoutHandler();
         return Promise.reject();
       } else {
+        console.log(error);
         throw error;
       }
     });
   }
 
-  getEvents() {
-    return this.authenticatedCall("get", "");
+  async getEvents() {
+    const dataRes = await axios.get("http://localhost:3001/", {
+      headers: {
+        authorization: this.tokenProvider(),
+      },
+    })
+    console.log(dataRes)
+    return dataRes;
   }
-// temporary parameters
-  addEvent(name, location, description, dateTime) {
-    return this.authenticatedCall("post", "", { name, location, description, dateTime });
+  // temporary parameters
+  async addEvent(name, dateAndTime, location, description) {
+    const headers = {
+      Authorization: this.tokenProvider(),
+      'Content-Type': 'application/json',
+    };
+    const data = { name, dateAndTime, location, description };
+    const dataRes = await axios.post('http://localhost:3001/', data, { headers });
+    console.log(dataRes);
+    return dataRes;
   }
 
   removeEvent(id) {
@@ -43,11 +57,13 @@ export class ApiClient {
     return this.authenticatedCall("put", `${id}`, { name, location, description, dateTime });
   }
 
-  async login(username, password) {
+  async login(email, password) {
+    console.log(email)
+    console.log(password)
     return await axios({
       method: "post",
       url: `${url}auth`,
-      data: { username, password },
+      data: { email, password },
     });
   }
 }

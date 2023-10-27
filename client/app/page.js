@@ -26,7 +26,7 @@ export default function Home() {
 
   return (
     <main>
-      {token ? <Dashboard client={client} /> : <Register client={client} />}
+      {token && <Dashboard client={client} />}
     </main>
   );
 }

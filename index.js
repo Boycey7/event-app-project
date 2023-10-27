@@ -7,7 +7,6 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
 const createError = require("http-errors");
-const eventRoutes = require("./routes/events");
 const { User } = require("./models/tempUsers");
 const userRoutes = require("./routes/userRoutes");
 const { v4: uuid } = require("uuid");
@@ -65,12 +64,13 @@ app.use(async (req, res, next) => {
   if (user) {
     next();
   } else {
-    return next(createError(401, "Unauthorised"));
+    return next(createError(403, "Unauthorised"));
   }
 });
 
+const eventRoutes = require("./routes/events");
 app.use("/", eventRoutes);
-app.use("/auth", userRoutes); // What is this here for?
+// app.use("/auth", userRoutes); // What is this here for?
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

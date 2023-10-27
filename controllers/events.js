@@ -8,19 +8,22 @@ const { v4: uuidv4 } = require("uuid");
 // get all events
 exports.getEvents = async (req, res, next) => {
   try {
-    await Event.find({})
-      .populate("creator", "email")
-      .then((events) => {
-        res.status(200).json({
-          count: events.length,
-          events: events.map((event) => {
-            return {
-              event,
-              eventCreator: event.creator._id.toString(),
-            };
-          }),
-        });
-      });
+    // await Event.find({})
+    //   .populate("creator", "email")
+    //   .then((events) => {
+    //     res.status(200).json({
+    //       count: events.length,
+    //       events: events.map((event) => {
+    //         return {
+    //           event,
+    //           eventCreator: event.creator._id.toString(),
+    //         };
+    //       }),
+    //     });
+    //   });
+    const events = await Event.find({})
+    console.log(events)
+    res.send(events)
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "a server error has occurred" });
@@ -31,6 +34,8 @@ exports.getEvents = async (req, res, next) => {
 // add an event
 exports.addEvent = async (req, res, next) => {
   const data = req.body;
+  console.log('data is')
+  console.log(data)
 
   try {
     const newEvent = new Event(data);
@@ -113,23 +118,7 @@ exports.getEventsByUser = async (req, res, next) => {
         return event.creator._id.toString() === id
     })
 
-
     res.status(200).send(usersEvents);
-
-
-    
-    // const allEvents = [];
-    // await Event.find({})
-    //   .populate("creator")
-    //   .then(
-    //     (events) => {
-    //         res.status(200).json({
-    //             events: events.filter((event) => {
-    //                 event.creator._id === id;
-    //             })
-    //         }
-    //     })
-    
         
     
   } catch (error) {
