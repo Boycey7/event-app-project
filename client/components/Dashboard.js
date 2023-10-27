@@ -31,16 +31,28 @@ const Dashboard = (props) => {
   // }, [events])
 
   return (
-    <div className="flex items-center justify-center px-4 bg-gray-100">
+    <div className="bg-gray-100 pb-12">
       <div className="px-8 pt-8 pb-4 mb-8 bg-purple-200 text-slate-800">
         <h1 className="mb-2 text-3xl font-bold">What's on in Town?</h1>
         <p className="text-xl">Here is what's happening...</p>
+        <a href="http://localhost:3000/add-event">
+            <button className="bg-slate-600 text-slate-100 py-2 px-4 rounded-md mt-2
+            ">Add an event</button>
+        </a>
       </div>
       <div className="">
           <div className="flex flex-wrap justify-center gap-4">
             {
               events?.map((event => {
-                return <div>Hello world</div>
+                console.log(event)
+                return (
+                    <Event 
+                        title={event.title}
+                        location={event.location}
+                        dateAndTime={event.dateAndTime}
+                        description={event.description}
+                    />
+                )
               }))
             }
           </div>

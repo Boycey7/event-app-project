@@ -4,6 +4,7 @@ import Register from "@/components/Register";
 import login from "@/components/Login";
 import Dashboard from "@/components/Dashboard";
 import { useState, useEffect } from "react";
+import Logout from "@/components/Logout";
 
 export default function Home() {
   const [token, setToken] = useState(null);
@@ -27,6 +28,7 @@ export default function Home() {
   return (
     <main>
       {token && <Dashboard client={client} />}
+      {/* <Logout /> */}
     </main>
   );
 }
