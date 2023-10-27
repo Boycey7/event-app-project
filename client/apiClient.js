@@ -26,6 +26,15 @@ export class ApiClient {
     });
   }
 
+     register(email, password, confirmPassword) {
+        return axios.post(`${process.env.NEXT_PUBLIC_API_ENDPOINT}register`, { email, password, confirmPassword })
+        .then(response => {
+            console.log("Registration response:", response);
+        })
+        .catch(error => {
+            console.log("Registration error:", error);
+        });
+      }      
   getEvents() {
     return this.authenticatedCall("get", "");
   }
@@ -48,5 +57,12 @@ export class ApiClient {
       url: `${url}auth`,
       data: { username, password },
     });
+    
   }
+  
+}
+  
+export const registerUser = async (email, password, confirmPassword) => {
+  const apiClient = new ApiClient(); // No token or logout handler is needed for registration
+  return apiClient.register(email, password, confirmPassword);
 }

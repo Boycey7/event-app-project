@@ -1,25 +1,40 @@
-"use client";
 import React, { useState } from "react";
 
-const Register = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-
+const Register = (props) => {
   const [disabled, setDisabled] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
     setDisabled(true);
-    // TODO: Implement registration logic here
-    console.log("User data submitted:", formData);
+
+    console.log("Register function called");
+
+    props.client.register(
+        e.target.email.value,
+        e.target.password.value,
+        e.target.confirmPassword.value
+      )
+      .then((response) => {
+        console.log(response);
+        setDisabled(false);
+        props.LoggedIn(response.data.token);
+        console.log("User data submitted:", {
+          email: e.target.email.value,
+          password: e.target.password.value,
+          confirmPassword: e.target.confirmPassword.value,
+        });
+      })
+      .catch((error) => {
+        console.log(error.response.data)
+        console.log(error);
+        setDisabled(false);
+        alert("Registration failed");
+      });
+      console.log("Sending to backend:", {
+        email: e.target.email.value,
+        password: e.target.password.value,
+        confirmPassword: e.target.confirmPassword.value,
+      });
   };
 
   return (
@@ -28,7 +43,7 @@ const Register = () => {
         <h1 className="mb-5 text-3xl font-semibold text-center text-gray-700">
           Register
         </h1>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={submitHandler}>
           <div>
             <label
               htmlFor="email"
@@ -42,7 +57,6 @@ const Register = () => {
               name="email"
               placeholder="Email Address"
               className="w-full p-2 mt-1 border rounded-md"
-              onChange={handleChange}
             />
           </div>
           <div>
@@ -58,23 +72,21 @@ const Register = () => {
               name="password"
               placeholder="Enter Password"
               className="w-full p-2 mt-1 border rounded-md"
-              onChange={handleChange}
             />
           </div>
           <div>
             <label
-              htmlFor="confirm-password"
+              htmlFor="confirmPassword"
               className="block text-sm font-medium text-gray-600"
             >
               Confirm Password
             </label>
             <input
               type="password"
-              id="confirm-password"
+              id="confirmPassword"
               name="confirmPassword"
               placeholder="Confirm Password"
               className="w-full p-2 mt-1 border rounded-md"
-              onChange={handleChange}
             />
           </div>
           <div>
@@ -82,7 +94,6 @@ const Register = () => {
               type="submit"
               className="w-full p-2 mt-5 text-white rounded-md bg-slate-700 hover:bg-slate-dark"
               disabled={disabled}
-              onClick={handleSubmit}
             >
               Sign Up
             </button>
