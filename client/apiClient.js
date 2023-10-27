@@ -9,6 +9,7 @@ export class ApiClient {
   }
 
   authenticatedCall(method, url, data) {
+    console.log("hello")
     return axios({
       method,
       url,
