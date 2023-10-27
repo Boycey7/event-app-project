@@ -28,6 +28,7 @@ export class ApiClient {
     });
   }
 
+
   async getEvents() {
     const dataRes = await axios.get("http://localhost:3001/", {
       headers: {
@@ -36,6 +37,7 @@ export class ApiClient {
     })
     console.log(dataRes)
     return dataRes;
+
   }
   // temporary parameters
   async addEvent(title, dateAndTime, location, description) {
@@ -65,5 +67,12 @@ export class ApiClient {
       url: `${url}auth`,
       data: { email, password },
     });
+    
   }
+  
+}
+  
+export const registerUser = async (email, password, confirmPassword) => {
+  const apiClient = new ApiClient(); // No token or logout handler is needed for registration
+  return apiClient.register(email, password, confirmPassword);
 }

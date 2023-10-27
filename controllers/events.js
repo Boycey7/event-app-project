@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const { Event } = require("../models/events");
 const helmet = require("helmet");
 const { User } = require("../models/tempUsers");
-const { v4: uuidv4 } = require("uuid");
 
 // get all events
 exports.getEvents = async (req, res, next) => {

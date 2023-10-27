@@ -70,7 +70,8 @@ app.use(async (req, res, next) => {
 
 const eventRoutes = require("./routes/events");
 app.use("/", eventRoutes);
-// app.use("/auth", userRoutes); // What is this here for?
+app.use("/", userRoutes);
+
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
