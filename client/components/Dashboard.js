@@ -46,6 +46,7 @@ const Dashboard = (props) => {
             <Event
               key={index}
               title={event.title}
+              imgUrl={event.image}
               location={event.location}
               dateAndTime={event.dateAndTime}
               description={event.description}
