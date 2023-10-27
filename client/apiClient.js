@@ -34,18 +34,19 @@ export class ApiClient {
         authorization: this.tokenProvider(),
       },
     })
-    console.log(dataRes)
+   
     return dataRes;
   }
   // temporary parameters
-  async addEvent(title, dateAndTime, location, description) {
+  async addEvent(title, dateAndTime, location, description, image) {
+
     const headers = {
       Authorization: this.tokenProvider(),
       'Content-Type': 'application/json',
     };
-    const data = { title, dateAndTime, location, description };
+    const data = { title, dateAndTime, location, description, image };
     const dataRes = await axios.post('http://localhost:3001/', data, { headers });
-    console.log(dataRes);
+    ;
     return dataRes;
   }
 

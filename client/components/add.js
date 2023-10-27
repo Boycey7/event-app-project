@@ -7,6 +7,7 @@ const EventForm = () => {
   const [location, setLocation] = useState("");
   const [timeAndDate, setTimeAndDate] = useState("");
   const [description, setDescription] = useState("");
+  const [image, setImage] = useState("");
   const [successMessage, setSuccessMessage] = useState(null);
 
   useEffect(() => {
@@ -31,10 +32,12 @@ const EventForm = () => {
       title,
       timeAndDate,
       location,
-      description
+      description,
+      image
     );
 
     if (addEvent) {
+        console.log(image)
       setSuccessMessage("Event added successfully!");
       setTimeout(() => {
         window.location.href = "http://localhost:3000/";
@@ -90,6 +93,18 @@ const EventForm = () => {
         <textarea className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" 
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-2 text-lg font-medium text-gray-700">
+          Image url:
+        </label>
+        <input className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" 
+          value={image}
+          onChange={(e) => {
+            setImage(e.target.value)
+            console.log(e.target.value)
+            }}
         />
       </div>
       <button className="px-4 py-2 text-white bg-gray-600 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-800" type="submit">Submit</button>

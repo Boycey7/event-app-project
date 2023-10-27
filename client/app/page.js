@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <main>
       {token && <Dashboard client={client} />}
-      <Logout />
+      {/* <Logout /> */}
     </main>
   );
 }

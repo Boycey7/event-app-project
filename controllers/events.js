@@ -34,8 +34,6 @@ exports.getEvents = async (req, res, next) => {
 // add an event
 exports.addEvent = async (req, res, next) => {
   const data = req.body;
-  console.log('data is')
-  console.log(data)
 
   try {
     const newEvent = new Event(data);
