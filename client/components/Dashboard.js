@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Event from "@/components/Event";
 
-// create event card -
+// create event card 
 // for now just use divs
 
 // receive post data from the server
@@ -30,36 +30,30 @@ const Dashboard = (props) => {
   //     console.log(events)
   // }, [events])
 
+ 
   return (
-    <div className="bg-gray-100 pb-12">
-      <div className="px-8 pt-8 pb-4 mb-8 bg-purple-200 text-slate-800">
-        <h1 className="mb-2 text-3xl font-bold">What's on in Town?</h1>
-        <p className="text-xl">Here is what's happening...</p>
+    <div className="pb-12 bg-gray-200">
+      <div className="px-8 pt-8 pb-4 mb-8 text-gray-700 bg-white shadow-md">
+        <h1 className="mb-2 text-3xl font-semibold">What's on in Town?</h1>
+        <p className="text-lg">Here is what's happening...</p>
         <a href="http://localhost:3000/add-event">
-            <button className="bg-slate-600 text-slate-100 py-2 px-4 rounded-md mt-2
-            ">Add an event</button>
+          <button className="px-4 py-2 mt-2 text-white bg-gray-600 rounded-md hover:bg-gray-700">Add an event</button>
         </a>
       </div>
-      <div className="">
-          <div className="flex flex-wrap justify-center gap-4">
-            {
-              events?.map((event => {
-                console.log(event)
-                return (
-                    <Event 
-                        title={event.title}
-                        location={event.location}
-                        dateAndTime={event.dateAndTime}
-                        description={event.description}
-                    />
-                )
-              }))
-            }
-          </div>
-          
-              </div>
+      <div className="container mx-auto">
+        <div className="flex flex-wrap justify-center gap-6">
+          {events?.map((event, index) => (
+            <Event
+              key={index}
+              title={event.title}
+              location={event.location}
+              dateAndTime={event.dateAndTime}
+              description={event.description}
+            />
+          ))}
+        </div>
       </div>
+    </div>
   );
 };
-
 export default Dashboard;
