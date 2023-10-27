@@ -2,7 +2,7 @@ const createError = require("http-errors");
 const mongoose = require("mongoose");
 const { Event } = require("../models/events");
 const helmet = require("helmet");
-const { User } = require("../models/users");
+const { User } = require("../models/tempUsers");
 const { v4: uuidv4 } =require("uuid");
 
 

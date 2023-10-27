@@ -70,7 +70,7 @@ app.use(async (req, res, next) => {
 });
 
 app.use("/", eventRoutes);
-app.use("/auth", userRoutes);
+app.use("/", userRoutes);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
