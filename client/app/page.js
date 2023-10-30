@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <main>
 
-      {!token && <a href="http://localhost:3000/login">
+      {!token && <a href="/login">
         <h1 className="text-4xl font-bold text-center mt-48">Login</h1>
       </a>}
       {token && <Dashboard client={client} logout={logout} />}
