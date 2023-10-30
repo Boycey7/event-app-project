@@ -63,7 +63,7 @@ export class ApiClient {
 
     return await axios({
       method: "post",
-      url: `${url}/auth`,
+      url: `${url}auth`,
       data: { email, password },
     });
     
