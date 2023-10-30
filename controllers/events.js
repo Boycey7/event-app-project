@@ -22,7 +22,6 @@ exports.getEvents = async (req, res, next) => {
     //     });
     //   });
     const events = await Event.find({})
-    console.log(events)
     res.send(events)
   } catch (error) {
     console.log(error);

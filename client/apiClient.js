@@ -9,7 +9,6 @@ export class ApiClient {
   }
 
   authenticatedCall(method, url, data) {
-    console.log("hello")
     return axios({
       method,
       url,
@@ -59,8 +58,7 @@ export class ApiClient {
   }
 
   async login(email, password) {
-    console.log(email)
-    console.log(password)
+
     return await axios({
       method: "post",
       url: `${url}auth`,

@@ -103,7 +103,6 @@ const EventForm = () => {
           value={image}
           onChange={(e) => {
             setImage(e.target.value)
-            console.log(e.target.value)
             }}
         />
       </div>

@@ -5,6 +5,7 @@ const eventSchema = new mongoose.Schema({
     location: String,
     dateAndTime: String,
     description: String,
+    image: String,
     creator: { 
                 type: mongoose.Schema.Types.ObjectId, 
                 ref: "User"
