@@ -21,7 +21,6 @@ exports.getEvents = async (req, res, next) => {
     //     });
     //   });
     const events = await Event.find({})
-    console.log(events)
     res.send(events)
   } catch (error) {
     console.log(error);
@@ -33,8 +32,6 @@ exports.getEvents = async (req, res, next) => {
 // add an event
 exports.addEvent = async (req, res, next) => {
   const data = req.body;
-  console.log('data is')
-  console.log(data)
 
   try {
     const newEvent = new Event(data);
