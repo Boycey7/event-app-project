@@ -19,11 +19,7 @@ mongoose
   .then(console.log(`Connected to the database at mongodb`))
   .catch((error) => console.log(error));
 
-app.use(
-  cors({
-    origin: ["https://event-app-project.vercel.app", "http://localhost:3000", "https://event-app-project-git-v1-jake-bs-projects.vercel.app/"],
-  })
-);
+app.use(cors());
 
 app.use(morgan("dev"));
 app.use(express.json({ extended: false }));
