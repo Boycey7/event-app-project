@@ -1,5 +1,5 @@
 import axios from "axios";
-const url = process.env.NEXT_PUBLIC_API_ENDPOINT || "https://event-app-mi94.onrender.com/";
+const url = process.env.NEXT_PUBLIC_API_ENDPOINT || "https://event-app-mi94.onrender.com";
 
 
 export class ApiClient {
@@ -29,7 +29,7 @@ export class ApiClient {
 
 
   async getEvents() {
-    const dataRes = await axios.get(`${url}events`, {
+    const dataRes = await axios.get(`${url}/events`, {
       headers: {
         authorization: this.tokenProvider(),
       },
@@ -46,24 +46,24 @@ export class ApiClient {
       'Content-Type': 'application/json',
     };
     const data = { title, dateAndTime, location, description, image };
-    const dataRes = await axios.post(`${url}events`, data, { headers });
+    const dataRes = await axios.post(`${url}/events`, data, { headers });
     ;
     return dataRes;
   }
 
   removeEvent(id) {
-    return this.authenticatedCall("delete", `${id}`);
+    return this.authenticatedCall("delete", `/events/${id}`);
   }
 
   updateEvent(id, name, location, description, dateTime) {
-    return this.authenticatedCall("put", `${id}`, { name, location, description, dateTime });
+    return this.authenticatedCall("put", `/events/${id}`, { name, location, description, dateTime });
   }
 
   async login(email, password) {
 
     return await axios({
       method: "post",
-      url: `${url}auth`,
+      url: `${url}/auth`,
       data: { email, password },
     });
     
