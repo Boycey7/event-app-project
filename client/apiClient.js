@@ -1,5 +1,5 @@
 import axios from "axios";
-const url = process.env.NEXT_PUBLIC_API_ENDPOINT || "http://localhost:3001/";
+const url = process.env.NEXT_PUBLIC_API_ENDPOINT || "https://event-app-mi94.onrender.com/";
 
 
 export class ApiClient {
@@ -11,7 +11,7 @@ export class ApiClient {
   authenticatedCall(method, url, data) {
     return axios({
       method,
-      url,
+      url: `${url}${endpoint}`,
       headers: {
         authorization: this.tokenProvider(),
       },
@@ -29,7 +29,7 @@ export class ApiClient {
 
 
   async getEvents() {
-    const dataRes = await axios.get("http://localhost:3001/", {
+    const dataRes = await axios.get(`${url}events`, {
       headers: {
         authorization: this.tokenProvider(),
       },
@@ -46,7 +46,7 @@ export class ApiClient {
       'Content-Type': 'application/json',
     };
     const data = { title, dateAndTime, location, description, image };
-    const dataRes = await axios.post('http://localhost:3001/', data, { headers });
+    const dataRes = await axios.post(`${url}events`, data, { headers });
     ;
     return dataRes;
   }
