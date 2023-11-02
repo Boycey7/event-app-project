@@ -40,7 +40,7 @@ const EventForm = () => {
         console.log(image)
       setSuccessMessage("Event added successfully!");
       setTimeout(() => {
-        window.location.href = "http://localhost:3000/";
+        window.location.href = "https://event-app-project.vercel.app/";
       }, 2000);  // Redirect after 2 seconds for the user to see the success message
     } else {
       alert("Error adding the event. Please try again.");
