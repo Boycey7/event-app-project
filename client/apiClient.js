@@ -46,7 +46,7 @@ export class ApiClient {
       'Content-Type': 'application/json',
     };
     const data = { title, dateAndTime, location, description, image };
-    const dataRes = await axios.post(`${url}/events`, data, { headers });
+    const dataRes = await axios.post(`${url}`, data, { headers });
     ;
     return dataRes;
   }
