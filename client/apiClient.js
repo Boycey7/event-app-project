@@ -29,7 +29,7 @@ export class ApiClient {
 
 
   async getEvents() {
-    const dataRes = await axios.get(`${url}/events`, {
+    const dataRes = await axios.get(`${url}`, {
       headers: {
         authorization: this.tokenProvider(),
       },
