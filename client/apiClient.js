@@ -52,11 +52,11 @@ export class ApiClient {
   }
 
   removeEvent(id) {
-    return this.authenticatedCall("delete", `/events/${id}`);
+    return this.authenticatedCall("delete", `${id}`);
   }
 
   updateEvent(id, name, location, description, dateTime) {
-    return this.authenticatedCall("put", `/events/${id}`, { name, location, description, dateTime });
+    return this.authenticatedCall("put", `${id}`, { name, location, description, dateTime });
   }
 
   async login(email, password) {
