@@ -27,12 +27,8 @@ export default function Home() {
 
   return (
     <main>
+      {token && <Dashboard client={client} />}
 
-      {!token && <a href="/login">
-        <h1 className="text-4xl font-bold text-center mt-48">Login</h1>
-      </a>}
-      {token && <Dashboard client={client} logout={logout} />}
-      {/* <Logout /> */}
     </main>
   );
 }
