@@ -8,7 +8,7 @@ export class ApiClient {
     this.logoutHandler = logoutHandler;
   }
 
-  authenticatedCall(method, url, data) {
+  authenticatedCall(method, endpoint, data) {
     return axios({
       method,
       url: `${url}${endpoint}`,
@@ -63,7 +63,7 @@ export class ApiClient {
 
     return await axios({
       method: "post",
-      url: `${url}/auth`,
+      url: `${url}auth`,
       data: { email, password },
     });
     
