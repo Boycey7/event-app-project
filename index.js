@@ -1,5 +1,5 @@
 require("dotenv").config();
-const port = 3001;
+const port = process.env.PORT || 3001;
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -16,8 +16,9 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(console.log(`Connected to the database at mongodb`))
+  .then(() => console.log(`Connected to the database at mongodb`))
   .catch((error) => console.log(error));
+
 
 app.use(cors());
 
